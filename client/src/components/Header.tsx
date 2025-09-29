@@ -1,0 +1,166 @@
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const productCategories = [
+    'HPLC Columns',
+    'UPLC Columns', 
+    'Flash Purification Columns',
+    'SPE Cartridges',
+    'Syringe Filters',
+    'Vials',
+    'HPLC Tubings',
+    'Water Purification Systems'
+  ];
+
+  const handleNavClick = (section: string) => {
+    console.log(`Navigating to ${section}`);
+    setIsOpen(false);
+  };
+
+  return (
+    <header className="border-b bg-background">
+      <div className="container mx-auto max-w-6xl px-6">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center">
+            <h1 className="text-xl font-semibold text-primary" data-testid="logo">
+              Utech Life
+            </h1>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <button 
+              onClick={() => handleNavClick('home')}
+              className="text-sm font-medium hover:text-primary transition-colors"
+              data-testid="nav-home"
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => handleNavClick('about')}
+              className="text-sm font-medium hover:text-primary transition-colors"
+              data-testid="nav-about"
+            >
+              About Us
+            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center text-sm font-medium hover:text-primary transition-colors" data-testid="nav-products">
+                Products <ChevronDown className="ml-1 h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                {productCategories.map((product) => (
+                  <DropdownMenuItem 
+                    key={product}
+                    onClick={() => handleNavClick(product)}
+                    data-testid={`product-${product.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    {product}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <button 
+              onClick={() => handleNavClick('industries')}
+              className="text-sm font-medium hover:text-primary transition-colors"
+              data-testid="nav-industries"
+            >
+              Industries
+            </button>
+            <button 
+              onClick={() => handleNavClick('contact')}
+              className="text-sm font-medium hover:text-primary transition-colors"
+              data-testid="nav-contact"
+            >
+              Contact
+            </button>
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden md:flex">
+            <Button 
+              onClick={() => handleNavClick('quote')}
+              data-testid="button-quote"
+            >
+              Get Quote
+            </Button>
+          </div>
+
+          {/* Mobile Menu */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" data-testid="button-mobile-menu">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80">
+              <div className="flex flex-col space-y-4 mt-8">
+                <button 
+                  onClick={() => handleNavClick('home')}
+                  className="text-left text-lg font-medium py-2"
+                  data-testid="mobile-nav-home"
+                >
+                  Home
+                </button>
+                <button 
+                  onClick={() => handleNavClick('about')}
+                  className="text-left text-lg font-medium py-2"
+                  data-testid="mobile-nav-about"
+                >
+                  About Us
+                </button>
+                <div className="space-y-2">
+                  <p className="text-lg font-medium py-2">Products</p>
+                  <div className="pl-4 space-y-2">
+                    {productCategories.map((product) => (
+                      <button 
+                        key={product}
+                        onClick={() => handleNavClick(product)}
+                        className="block text-left text-muted-foreground hover:text-foreground py-1"
+                        data-testid={`mobile-product-${product.toLowerCase().replace(/\s+/g, '-')}`}
+                      >
+                        {product}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <button 
+                  onClick={() => handleNavClick('industries')}
+                  className="text-left text-lg font-medium py-2"
+                  data-testid="mobile-nav-industries"
+                >
+                  Industries
+                </button>
+                <button 
+                  onClick={() => handleNavClick('contact')}
+                  className="text-left text-lg font-medium py-2"
+                  data-testid="mobile-nav-contact"
+                >
+                  Contact
+                </button>
+                <Button 
+                  onClick={() => handleNavClick('quote')}
+                  className="mt-4"
+                  data-testid="mobile-button-quote"
+                >
+                  Get Quote
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </header>
+  );
+}
