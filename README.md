@@ -32,6 +32,7 @@ git commit -m "Remove backend, keep frontend in client/"
 ```
 
 If you'd like, I can:
+
 - finish removing the leftover backend files and commit the changes
 - move `vite.config.ts`, `postcss.config.js`, and `tailwind.config.ts` into `client/` (optional)
 - produce a minimal `.gitignore` and a `client/.gitignore`

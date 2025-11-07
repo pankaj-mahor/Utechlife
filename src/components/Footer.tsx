@@ -1,40 +1,41 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import logo from "../assets/logo.png";
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubscribe = () => {
-    console.log('Newsletter subscription:', email);
-    setEmail('');
+    console.log("Newsletter subscription:", email);
+    setEmail("");
   };
 
   const handleContactSubmit = () => {
-    console.log('Contact message:', { email, message });
-    setEmail('');
-    setMessage('');
+    console.log("Contact message:", { email, message });
+    setEmail("");
+    setMessage("");
   };
 
   const productLinks = [
-    'HPLC Columns',
-    'UPLC Columns', 
-    'Flash Purification',
-    'SPE Cartridges',
-    'Syringe Filters',
-    'Water Systems'
+    "HPLC Columns",
+    "UPLC Columns",
+    "Flash Purification",
+    "SPE Cartridges",
+    "Syringe Filters",
+    "Water Systems",
   ];
 
   const companyLinks = [
-    'About Us',
-    'Our Mission',
-    'Quality Policy',
-    'Careers',
-    'News & Updates',
-    'Certifications'
+    "About Us",
+    "Our Mission",
+    "Quality Policy",
+    "Careers",
+    "News & Updates",
+    "Certifications",
   ];
 
   return (
@@ -45,10 +46,21 @@ export default function Footer() {
           <div className="grid md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="md:col-span-1">
-              <h3 className="text-xl font-bold text-primary mb-4">Utech Life</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">
+                <img
+                  src={logo}
+                  alt="Utech life logo"
+                  // style={{
+                  //   width: "150px",
+                  //   height: "60px",
+                  // }}
+                  className="w-4/5"
+                />
+              </h3>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                Trusted provider of advanced laboratory instruments, chromatography columns, 
-                and consumables for pharmaceutical and research institutions.
+                Trusted provider of advanced laboratory instruments,
+                chromatography columns, and consumables for pharmaceutical and
+                research institutions.
               </p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
@@ -57,11 +69,11 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-primary" />
-                  <span>+91-XXX-XXX-XXXX</span>
+                  <span>+91-9810756453</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" />
-                  <span>info@utechlife.com</span>
+                  <span>sales@utechlife.com</span>
                 </div>
               </div>
             </div>
@@ -72,10 +84,12 @@ export default function Footer() {
               <ul className="space-y-2">
                 {productLinks.map((link, index) => (
                   <li key={index}>
-                    <button 
+                    <button
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => console.log(`Navigate to ${link}`)}
-                      data-testid={`footer-product-${link.toLowerCase().replace(/\s+/g, '-')}`}
+                      data-testid={`footer-product-${link
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
                     >
                       {link}
                     </button>
@@ -90,10 +104,12 @@ export default function Footer() {
               <ul className="space-y-2">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
-                    <button 
+                    <button
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => console.log(`Navigate to ${link}`)}
-                      data-testid={`footer-company-${link.toLowerCase().replace(/\s+/g, '-')}`}
+                      data-testid={`footer-company-${link
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
                     >
                       {link}
                     </button>
@@ -103,19 +119,19 @@ export default function Footer() {
             </div>
 
             {/* Contact Form */}
-            <div>
+            {/* <div>
               <h4 className="font-semibold mb-4">Get in Touch</h4>
               <Card>
                 <CardContent className="p-4">
                   <div className="space-y-3">
-                    <Input 
+                    <Input
                       type="email"
                       placeholder="Your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       data-testid="input-contact-email"
                     />
-                    <textarea 
+                    <textarea
                       placeholder="Your message"
                       className="w-full px-3 py-2 text-sm border rounded-md resize-none"
                       rows={3}
@@ -123,8 +139,8 @@ export default function Footer() {
                       onChange={(e) => setMessage(e.target.value)}
                       data-testid="textarea-contact-message"
                     />
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="w-full"
                       onClick={handleContactSubmit}
                       data-testid="button-send-message"
@@ -135,12 +151,12 @@ export default function Footer() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Newsletter Section */}
-        <div className="py-8 border-t">
+        {/* <div className="py-8 border-t">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <h4 className="font-semibold mb-1">Stay Updated</h4>
@@ -160,7 +176,7 @@ export default function Footer() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Bar */}
         <div className="py-6 border-t text-center">
@@ -169,23 +185,23 @@ export default function Footer() {
               © 2024 Utech Life. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
-              <button 
+              <button
                 className="text-muted-foreground hover:text-primary transition-colors"
-                onClick={() => console.log('Privacy Policy')}
+                onClick={() => console.log("Privacy Policy")}
                 data-testid="link-privacy"
               >
                 Privacy Policy
               </button>
-              <button 
+              <button
                 className="text-muted-foreground hover:text-primary transition-colors"
-                onClick={() => console.log('Terms of Service')}
+                onClick={() => console.log("Terms of Service")}
                 data-testid="link-terms"
               >
                 Terms of Service
               </button>
-              <button 
+              <button
                 className="text-muted-foreground hover:text-primary transition-colors"
-                onClick={() => console.log('Cookie Policy')}
+                onClick={() => console.log("Cookie Policy")}
                 data-testid="link-cookies"
               >
                 Cookie Policy
