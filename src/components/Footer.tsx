@@ -54,7 +54,7 @@ export default function Footer() {
                   //   width: "150px",
                   //   height: "60px",
                   // }}
-                  className="w-4/5"
+                  className="lg:w-56 w-40"
                 />
               </h3>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
