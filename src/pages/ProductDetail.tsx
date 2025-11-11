@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 import { products } from "@/data/products";
 import { Send, ArrowLeft, ExternalLink } from "lucide-react";
 import { useState } from "react";
-
+import { phoneNumber } from "../utils/utils";
 export default function ProductDetail() {
   const [, setLocation] = useLocation();
   const [, params] = useRoute<{ id: string }>("/products/:id");
@@ -70,7 +70,7 @@ Email: ${queryForm.email}
 Phone: ${queryForm.phone}
 Message: ${queryForm.message}`;
 
-    const whatsappUrl = `https://wa.me/919810756453?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
