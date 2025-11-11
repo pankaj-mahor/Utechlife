@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, ChevronDown } from "lucide-react";
@@ -12,6 +13,7 @@ import { phoneNumber } from "../utils/utils";
 import logo from "../assets/logo.png";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [location, setLocation] = useLocation();
 
   const productCategories = [
     "HPLC Columns",
@@ -32,7 +34,7 @@ export default function Header() {
   return (
     <header className="border-b bg-background">
       <div className="container mx-auto max-w-7xl lg:px-6 px-4">
-        <div className="flex lg:h-28 h-20 items-center justify-between">
+        <div className="flex py-2 lg:py-3 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <a
@@ -44,20 +46,22 @@ export default function Header() {
                 src={logo}
                 alt="Utechlife logo"
                 //  className="lg:w-[244px] lg:h-[72px]"
-                className="lg:w-auto h-auto w-4/5"
+                className="lg:w-56 w-40"
               />
             </a>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => handleNavClick("home")}
-              className="text-sm font-medium hover:text-primary transition-colors"
+            <Link
+              href="/"
+              className={`text-sm font-medium hover:text-primary transition-colors ${
+                location === "/" ? "text-primary" : ""
+              }`}
               data-testid="nav-home"
             >
               Home
-            </button>
+            </Link>
             {/* <button
               onClick={() => handleNavClick("about")}
               className="text-sm font-medium hover:text-primary transition-colors"
@@ -67,12 +71,23 @@ export default function Header() {
             </button> */}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className="flex items-center text-sm font-medium hover:text-primary transition-colors"
+                className={`flex items-center text-sm font-medium hover:text-primary transition-colors ${
+                  location.startsWith("/products") ? "text-primary" : ""
+                }`}
                 data-testid="nav-products"
               >
                 Products <ChevronDown className="ml-1 h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem
+                  onClick={() => {
+                    setLocation("/products");
+                    setIsOpen(false);
+                  }}
+                  data-testid="product-all"
+                >
+                  All Products
+                </DropdownMenuItem>
                 {productCategories.map((product) => (
                   <DropdownMenuItem
                     key={product}
@@ -132,13 +147,16 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
               <div className="flex flex-col space-y-4 mt-8">
-                <button
-                  onClick={() => handleNavClick("home")}
-                  className="text-left text-lg font-medium py-2"
+                <Link
+                  href="/"
+                  className={`text-left text-lg font-medium py-2 ${
+                    location === "/" ? "text-primary" : ""
+                  }`}
+                  onClick={() => setIsOpen(false)}
                   data-testid="mobile-nav-home"
                 >
                   Home
-                </button>
+                </Link>
                 {/* <button
                   onClick={() => handleNavClick("about")}
                   className="text-left text-lg font-medium py-2"
@@ -149,6 +167,20 @@ export default function Header() {
                 <div className="space-y-2">
                   <p className="text-lg font-medium py-2">Products</p>
                   <div className="pl-4 space-y-2">
+                    <button
+                      onClick={() => {
+                        setLocation("/products");
+                        setIsOpen(false);
+                      }}
+                      className={`block text-left hover:text-foreground py-1 ${
+                        location.startsWith("/products")
+                          ? "text-primary font-medium"
+                          : "text-muted-foreground"
+                      }`}
+                      data-testid="mobile-product-all"
+                    >
+                      All Products
+                    </button>
                     {productCategories.map((product) => (
                       <button
                         key={product}
