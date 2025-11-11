@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import { phoneNumber } from "../utils/utils";
 import logo from "../assets/logo.png";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -105,7 +105,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:flex">
             <a
-              href="https://wa.me/919810756453?send?text=I want to know more about it"
+              href={`https://wa.me/${phoneNumber}?send?text=I want to know more about it`}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-quote"
@@ -179,7 +179,7 @@ export default function Header() {
                 </button> */}
                 <div className="hidden md:flex">
                   <a
-                    href="https://wa.me/919810756453"
+                    href={`https://wa.me/${phoneNumber}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-testid="button-quote"
