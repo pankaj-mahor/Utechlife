@@ -25,7 +25,7 @@ import { Label } from "@/components/ui/label";
 import { products } from "@/data/products";
 import heroImage from "@assets/generated_images/Laboratory_hero_image_920b5f7e.png";
 import { Eye, Send } from "lucide-react";
-
+import { phoneNumber } from "../utils/utils";
 const categories = [
   { value: "all", label: "All Products" },
   { value: "columns", label: "Columns" },
@@ -75,7 +75,7 @@ Email: ${queryForm.email}
 Phone: ${queryForm.phone}
 Message: ${queryForm.message}`;
 
-    const whatsappUrl = `https://wa.me/919810756453?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");

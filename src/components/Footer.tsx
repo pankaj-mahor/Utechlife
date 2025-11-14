@@ -3,8 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import logo from "../assets/logo.png";
-
+import logo from "../assets/logo.jpeg";
+import { phoneNumber } from "../utils/utils";
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -69,7 +69,9 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-primary" />
-                  <span>+91-9810756453</span>
+                  <span>
+                    +{phoneNumber}, <br /> +234 9093142520
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" />
