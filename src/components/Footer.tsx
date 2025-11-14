@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpeg";
 import { phoneNumber } from "../utils/utils";
 export default function Footer() {
   const [email, setEmail] = useState("");
