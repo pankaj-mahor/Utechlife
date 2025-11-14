@@ -1,4 +1,23 @@
-export const products = [
+export type ProductCategory =
+  | "columns"
+  | "cartridges"
+  | "filters"
+  | "consumables";
+
+export type ProductPrice = number | string | null;
+
+export interface Product {
+  id: string;
+  name: string;
+  desc: string;
+  image: string;
+  price: ProductPrice;
+  category: ProductCategory;
+  external?: string;
+  extras?: string[];
+}
+
+export const products: Product[] = [
   {
     id: "1",
     name: "Flash Columns",

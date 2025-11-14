@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -9,16 +9,15 @@ import ProductDetail from "@/pages/ProductDetail";
 import Invoice from "@/pages/Invoice";
 import NotFound from "@/pages/not-found";
 
-function Router() {
+function AppRouter() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/products/:id" component={ProductDetail} />
-      <Route path="/products" component={Products} />
-      <Route path="/invoice" component={Invoice} />
-      {/* Fallback to 404 */}
-      <Route component={NotFound} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/invoice" element={<Invoice />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
@@ -27,7 +26,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Router />
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );

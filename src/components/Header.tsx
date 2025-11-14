@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, ChevronDown } from "lucide-react";
@@ -13,7 +13,9 @@ import { phoneNumber } from "../utils/utils";
 import logo from "../assets/logo.jpeg";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [location, setLocation] = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pathname = location.pathname;
 
   const productCategories = [
     "HPLC Columns",
@@ -37,8 +39,8 @@ export default function Header() {
         <div className="flex py-2 lg:py-3 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-xl font-semibold text-primary"
               data-testid="logo"
             >
@@ -48,15 +50,15 @@ export default function Header() {
                 //  className="lg:w-[244px] lg:h-[72px]"
                 className="lg:w-56 w-40"
               />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
-              href="/"
+              to="/"
               className={`text-sm font-medium hover:text-primary transition-colors ${
-                location === "/" ? "text-primary" : ""
+                pathname === "/" ? "text-primary" : ""
               }`}
               data-testid="nav-home"
             >
@@ -72,7 +74,7 @@ export default function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger
                 className={`flex items-center text-sm font-medium hover:text-primary transition-colors ${
-                  location.startsWith("/products") ? "text-primary" : ""
+                  pathname.startsWith("/products") ? "text-primary" : ""
                 }`}
                 data-testid="nav-products"
               >
@@ -81,7 +83,7 @@ export default function Header() {
               <DropdownMenuContent align="start" className="w-56">
                 <DropdownMenuItem
                   onClick={() => {
-                    setLocation("/products");
+                    navigate("/products");
                     setIsOpen(false);
                   }}
                   data-testid="product-all"
@@ -148,9 +150,9 @@ export default function Header() {
             <SheetContent side="right" className="w-80">
               <div className="flex flex-col space-y-4 mt-8">
                 <Link
-                  href="/"
+                  to="/"
                   className={`text-left text-lg font-medium py-2 ${
-                    location === "/" ? "text-primary" : ""
+                    pathname === "/" ? "text-primary" : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                   data-testid="mobile-nav-home"
@@ -169,11 +171,11 @@ export default function Header() {
                   <div className="pl-4 space-y-2">
                     <button
                       onClick={() => {
-                        setLocation("/products");
+                        navigate("/products");
                         setIsOpen(false);
                       }}
                       className={`block text-left hover:text-foreground py-1 ${
-                        location.startsWith("/products")
+                        pathname.startsWith("/products")
                           ? "text-primary font-medium"
                           : "text-muted-foreground"
                       }`}

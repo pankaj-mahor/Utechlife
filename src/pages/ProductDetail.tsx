@@ -1,4 +1,4 @@
-import { useLocation, useRoute } from "wouter";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,8 @@ import { Send, ArrowLeft, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { phoneNumber } from "../utils/utils";
 export default function ProductDetail() {
-  const [, setLocation] = useLocation();
-  const [, params] = useRoute<{ id: string }>("/products/:id");
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
   const [queryDialogOpen, setQueryDialogOpen] = useState(false);
   const [queryForm, setQueryForm] = useState({
     name: "",
@@ -30,7 +30,7 @@ export default function ProductDetail() {
     message: "",
   });
 
-  const productId = params?.id;
+  const productId = id;
   const product = productId
     ? products.find((p) => p.id === productId)
     : undefined;
@@ -45,7 +45,7 @@ export default function ProductDetail() {
             <p className="text-muted-foreground mb-6">
               The product you're looking for doesn't exist.
             </p>
-            <Button onClick={() => setLocation("/products")}>
+            <Button onClick={() => navigate("/products")}>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Products
             </Button>
@@ -99,7 +99,7 @@ Message: ${queryForm.message}`;
           <div className="container mx-auto max-w-7xl px-6 py-4">
             <Button
               variant="ghost"
-              onClick={() => setLocation("/products")}
+              onClick={() => navigate("/products")}
               className="mb-2"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -119,13 +119,13 @@ Message: ${queryForm.message}`;
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        "https://via.placeholder.com/600x600?text=Product+Image";
-                    }}
+                    // onError={(e) => {
+                    //   (e.target as HTMLImageElement).src =
+                    //     "https://via.placeholder.com/600x600?text=Product+Image";
+                    // }}
                   />
                 </div>
-                {product.extras && product.extras.length > 0 && (
+                {/* {product.extras && product.extras.length > 0 && (
                   <div className="grid grid-cols-4 gap-2">
                     {product.extras.map((extra, index) => (
                       <div
@@ -133,18 +133,18 @@ Message: ${queryForm.message}`;
                         className="aspect-square rounded-lg overflow-hidden bg-muted cursor-pointer hover:opacity-80 transition-opacity"
                       >
                         <img
-                          src={extra}
+                          // src={extra}
                           alt={`${product.name} ${index + 1}`}
                           className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              "https://via.placeholder.com/150x150?text=Image";
-                          }}
+                          // onError={(e) => {
+                          //   (e.target as HTMLImageElement).src =
+                          //     "https://via.placeholder.com/150x150?text=Image";
+                          // }}
                         />
                       </div>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
 
               {/* Product Info */}

@@ -1,0 +1,24 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.9.3
+2 info using node@v22.19.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/apple/Work/UtechShowcase/.npmrc
+5 silly config load:file:/Users/apple/.npmrc
+6 silly config load:file:/Users/apple/.npm-global/etc/npmrc
+7 verbose title npm run build
+8 verbose argv "run" "build"
+9 verbose logfile logs-max:10 dir:/Users/apple/Work/UtechShowcase/.npm-cache/_logs/2025-11-14T09_43_35_981Z-
+10 verbose logfile /Users/apple/Work/UtechShowcase/.npm-cache/_logs/2025-11-14T09_43_35_981Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/npm 162ms
+13 verbose cwd /Users/apple/Work/UtechShowcase
+14 verbose os Darwin 24.6.0
+15 verbose node v22.19.0
+16 verbose npm  v10.9.3
+17 notice
+17 notice New major version of npm available! 10.9.3 -> 11.6.2
+17 notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+17 notice To update run: npm install -g npm@11.6.2
+17 notice  { force: true, [Symbol(proc-log.meta)]: true }
+18 verbose exit 0
+19 info ok
