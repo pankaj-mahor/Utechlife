@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { phoneNumber } from "../utils/utils";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpeg";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useLocation();
