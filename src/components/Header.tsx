@@ -10,7 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { phoneNumber } from "../utils/utils";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/logo.png";
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -48,7 +49,7 @@ export default function Header() {
                 src={logo}
                 alt="Utechlife logo"
                 //  className="lg:w-[244px] lg:h-[72px]"
-                className="lg:w-56 w-40"
+                className="lg:w-48 w-40"
               />
             </Link>
           </div>
