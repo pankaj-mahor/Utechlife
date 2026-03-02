@@ -27,7 +27,7 @@ import heroImage from "@assets/generated_images/Laboratory_hero_image_920b5f7e.p
 import { Eye, Send } from "lucide-react";
 import { phoneNumber } from "../utils/utils";
 
-import productImg from "../assets/logo.png";
+import productImg from "../assets/logo.webp";
 const categories = [
   { value: "all", label: "All Products" },
   { value: "columns", label: "Columns" },
@@ -78,7 +78,7 @@ Phone: ${queryForm.phone}
 Message: ${queryForm.message}`;
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
+      message,
     )}`;
     window.open(whatsappUrl, "_blank");
 
