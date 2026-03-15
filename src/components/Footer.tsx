@@ -33,6 +33,7 @@ export default function Footer() {
     "Careers",
     "News & Updates",
     "Certifications",
+    "Brochure",
   ];
 
   return (
@@ -103,15 +104,28 @@ export default function Footer() {
               <ul className="space-y-2">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
-                    <button
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                      onClick={() => console.log(`Navigate to ${link}`)}
-                      data-testid={`footer-company-${link
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
-                    >
-                      {link}
-                    </button>
+                    {link === "Brochure" ? (
+                      <a
+                        href="/brochure.pdf"
+                        download
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                        data-testid={`footer-company-${link
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        {link}
+                      </a>
+                    ) : (
+                      <button
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                        onClick={() => console.log(`Navigate to ${link}`)}
+                        data-testid={`footer-company-${link
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        {link}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>

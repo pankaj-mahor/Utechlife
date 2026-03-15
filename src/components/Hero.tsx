@@ -52,16 +52,15 @@ export default function Hero() {
                 </Button>
               </a>
             </div>
-
-            {/* <Button
-              variant="outline"
-              size="lg"
-              onClick={handleLearnMore}
-              className="text-base px-8 bg-white/10 backdrop-blur border-white/30 text-white hover:bg-white/20"
-              data-testid="button-learn-more"
-            >
-              Learn More
-            </Button> */}
+            <a href="/brochure.pdf" download>
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-base px-8 bg-white/30 backdrop-blur border-white/60 text-white hover:bg-white/40"
+              >
+                Download Brochure
+              </Button>
+            </a>
           </div>
         </div>
       </div>
