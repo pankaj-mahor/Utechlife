@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import logo from "../assets/logo.webp";
 import { phoneNumber } from "../utils/utils";
+import brochure from "../assets/utechlife_brochure.pdf";
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -48,11 +49,9 @@ export default function Footer() {
                 <img
                   src={logo}
                   alt="Utech life logo"
-                  // style={{
-                  //   width: "150px",
-                  //   height: "60px",
-                  // }}
-                  className="lg:w-56 w-40"
+                  width={224}
+                  height={66}
+                  className="lg:w-56 w-40 h-auto"
                 />
               </h3>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
@@ -106,7 +105,7 @@ export default function Footer() {
                   <li key={index}>
                     {link === "Brochure" ? (
                       <a
-                        href="/brochure.pdf"
+                        href={brochure}
                         download
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                         data-testid={`footer-company-${link

@@ -48,8 +48,9 @@ export default function Header() {
               <img
                 src={logo}
                 alt="Utechlife logo"
-                //  className="lg:w-[244px] lg:h-[72px]"
-                className="lg:w-48 w-40"
+                width={192}
+                height={72}
+                className="lg:w-48 w-40 h-auto"
               />
             </Link>
           </div>
@@ -138,6 +139,7 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
+                aria-label="Open menu"
                 data-testid="button-mobile-menu"
               >
                 <Menu

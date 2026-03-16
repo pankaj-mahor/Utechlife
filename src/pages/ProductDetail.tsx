@@ -119,6 +119,7 @@ Message: ${queryForm.message}`;
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                     // onError={(e) => {
                     //   (e.target as HTMLImageElement).src =
                     //     "https://via.placeholder.com/600x600?text=Product+Image";
