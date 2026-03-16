@@ -1,24 +1,27 @@
-import { Switch, Route } from "wouter";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Home from "@/pages/Home";
-import Products from "@/pages/Products";
-import ProductDetail from "@/pages/ProductDetail";
-import Invoice from "@/pages/Invoice";
-import NotFound from "@/pages/not-found";
+import { lazy, Suspense } from "react";
 
-function Router() {
+const Home = lazy(() => import("@/pages/Home"));
+const Products = lazy(() => import("@/pages/Products"));
+const ProductDetail = lazy(() => import("@/pages/ProductDetail"));
+const Invoice = lazy(() => import("@/pages/Invoice"));
+const NotFound = lazy(() => import("@/pages/not-found"));
+
+function AppRouter() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/products/:id" component={ProductDetail} />
-      <Route path="/products" component={Products} />
-      <Route path="/invoice" component={Invoice} />
-      {/* Fallback to 404 */}
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/invoice" element={<Invoice />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 
@@ -27,7 +30,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Router />
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@assets/generated_images/Laboratory_hero_image_920b5f7e.png";
 import { phoneNumber } from "../utils/utils";
+import brochure from "../assets/utechlife_brochure.pdf";
 export default function Hero() {
   const handleGetStarted = () => {
     console.log("Get Started clicked");
@@ -36,7 +37,7 @@ export default function Hero() {
             <div className="">
               <a
                 href={`https://wa.me/${phoneNumber}?text=${encodeURI(
-                  "Hello Utech Life team, I am interested in learning more and getting started with your solutions."
+                  "Hello Utech Life team, I am interested in learning more and getting started with your solutions.",
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -52,16 +53,15 @@ export default function Hero() {
                 </Button>
               </a>
             </div>
-
-            {/* <Button
-              variant="outline"
-              size="lg"
-              onClick={handleLearnMore}
-              className="text-base px-8 bg-white/10 backdrop-blur border-white/30 text-white hover:bg-white/20"
-              data-testid="button-learn-more"
-            >
-              Learn More
-            </Button> */}
+            <a href={brochure} download>
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-base px-8 bg-white/30 backdrop-blur border-white/60 text-white hover:bg-white/40"
+              >
+                Download Brochure
+              </Button>
+            </a>
           </div>
         </div>
       </div>

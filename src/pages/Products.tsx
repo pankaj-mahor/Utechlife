@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,8 @@ import { products } from "@/data/products";
 import heroImage from "@assets/generated_images/Laboratory_hero_image_920b5f7e.png";
 import { Eye, Send } from "lucide-react";
 import { phoneNumber } from "../utils/utils";
+
+import productImg from "../assets/logo.webp";
 const categories = [
   { value: "all", label: "All Products" },
   { value: "columns", label: "Columns" },
@@ -35,7 +37,7 @@ const categories = [
 ];
 
 export default function Products() {
-  const [, setLocation] = useLocation();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [queryDialogOpen, setQueryDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<
@@ -56,7 +58,7 @@ export default function Products() {
   }, [selectedCategory]);
 
   const handleViewDetails = (productId: string) => {
-    setLocation(`/products/${productId}`);
+    navigate(`/products/${productId}`);
   };
 
   const handleSendQuery = (product: (typeof products)[0]) => {
@@ -76,7 +78,7 @@ Phone: ${queryForm.phone}
 Message: ${queryForm.message}`;
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
+      message,
     )}`;
     window.open(whatsappUrl, "_blank");
 
@@ -150,13 +152,14 @@ Message: ${queryForm.message}`;
                   <CardHeader className="pb-4">
                     <div className="aspect-video rounded-lg overflow-hidden mb-4 bg-muted">
                       <img
-                        src={product.image}
+                        src={productImg}
                         alt={product.name}
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            "https://via.placeholder.com/400x300?text=Product+Image";
-                        }}
+                        loading="lazy"
+                        // onError={(e) => {
+                        //   (e.target as HTMLImageElement).src =
+                        //     "https://via.placeholder.com/400x300?text=Product+Image";
+                        // }}
                       />
                     </div>
                     <div className="flex items-center justify-between mb-2">
